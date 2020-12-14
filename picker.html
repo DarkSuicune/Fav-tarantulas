@@ -5,22 +5,14 @@
 <title>Picker</title>
 <style>
 body {
-    background:#FFF;
-    color:#000;
-    font-family:verdana, sans-serif;
-    font-size:10pt;
+    background:#000;
+    background-image:url(Images/CSS/background.gif);
+    background-size:cover;
+    color:#b70000;
+    font-family: "Crimson Black DEMO";
+    font-size:15pt;
     margin:0;
-    padding:10px;
-}
-
-a:link, a:visited {
-    color:#008;
-    font-weight:bold;
-    text-decoration:none;
-}
-
-a:active, a:hover {
-    color:#ACF;
+    padding:12px;
 }
 
 .info {
@@ -30,20 +22,21 @@ a:active, a:hover {
 button {
     font-family:inherit;
     cursor:pointer;
-    border:0;
-    border-radius:3px;
-    padding:0.3em 0.5em;
-    background:#CCC;
+    border:3px groove gold;
+    border-radius:10px;
+    padding:5px 10px;
+    background:#be1c1c;
     color:#000;
 }
 
 button:hover {
-    background:#DDD;
+    background:#000000;
+    color:white;
 }
 
 button.disabled {
-    background:#DDD;
-    color:#888;
+    background:#ac5252;
+    color:#343434;
     cursor:not-allowed;
 }
 
@@ -83,21 +76,22 @@ button.disabled:hover {
 }
 
 #pick {
-    background:#58F;
-    color:#FFF;
+    background:#b40000;
+    color:#000000;
     font-size:larger;
+    font-variant:small-caps;
     font-weight:bold;
     width:6em;
-    border-radius:5px;
+    border-radius:10px;
     margin-right:10px;
 }
 
 #pick.disabled {
-    background:#ACF;
+    background:#790000;
 }
 
 #pick:hover {
-    background:#ACF;
+    background:#d05353;
 }
 
 .item-list {
@@ -109,10 +103,10 @@ button.disabled:hover {
 .item-list li {
     margin:0;
     display:inline-block;
-    height:100px;
-    width:100px;
-    line-height:100px;
-    border:3px solid transparent;
+    height:170px;
+    width:170px;
+    line-height:150px;
+    border:3px solid black;
     text-align:center;
     position:relative;
     vertical-align:top;
@@ -124,8 +118,8 @@ button.disabled:hover {
 
 .item-list li img {
     vertical-align:middle;
-    max-height:100%;
-    max-width:100%;
+    max-height:110%;
+    max-width:110%;
 }
 
 .item-list li span {
@@ -167,7 +161,8 @@ button.disabled:hover {
 }
 
 .item-list li:hover {
-    background:#CDF;
+border:2px solid red;
+box-shadow: 2px 2px 10px red;
 }
 
 .item-list.sorting li:hover {
@@ -175,7 +170,12 @@ button.disabled:hover {
 }
 
 #evaluating li.selected {
-    border:3px solid #7AC;
+    border:3px solid #c30000;
+    box-shadow: 3px 3px 30px red;
+}
+#evaluating li.selected:hover {
+    border:3px solid #c30000;
+    box-shadow: 3px 3px 30px #ff5a5a;
 }
 
 #evaluating, #buttons {
@@ -206,9 +206,9 @@ button.disabled:hover {
 </style>
 </head>
 <body>
-<h1>Picker</h1>
+<h1>Pet Picker</h1>
 
-<p>You can include any content you want here.</p>
+<p>Pick your favourite reptile/amphibian!</p>
 
 <div id="container">
 
@@ -234,308 +234,279 @@ button.disabled:hover {
 'use strict';
 
 var items = [
-{id: 'abroniaarborealalligatorlizard', name: 'Abronia Arboreal Alligator Lizard', image: 'abroniaarborealalligatorlizard.jpg'}
-{id: 'ackiemonitor', name: 'Ackie Monitor', image: 'ackiemonitor.jpg'}
-{id: 'africanblackhousesnake', name: 'African Black House Snake', image: 'africanblackhousesnake.jpg'}
-{id: 'africanbluetailskink', name: 'African Blue Tail Skink', image: 'africanbluetailskink.jpg'}
-{id: 'africanfilesnake', name: 'African File Snake', image: 'africanfilesnake.jpg'}
-{id: 'africangreenbushsnake', name: 'African Green Bush Snake', image: 'africangreenbushsnake.jpg'}
-{id: 'africanrockpython', name: 'African Rock Python', image: 'africanrockpython.jpg'}
-{id: 'alligatorsnappingturtle', name: 'Alligator Snapping Turtle', image: 'alligatorsnappingturtle.jpg'}
-{id: 'amazonmilkfrog', name: 'Amazon Milk Frog', image: 'amazonmilkfrog.jpg'}
-{id: 'amazontreeboa', name: 'Amazon Tree Boa', image: 'amazontreeboa.jpg'}
-{id: 'americanalligator', name: 'American Alligator', image: 'americanalligator.jpg'}
-{id: 'americancrocodile', name: 'American Crocodile', image: 'americancrocodile.jpg'}
-{id: 'angolanpython', name: 'Angolan Python', image: 'angolanpython.jpg'}
-{id: 'argusmonitor', name: 'Argus Monitor', image: 'argusmonitor.jpg'}
-{id: 'armadillolizard', name: 'Armadillo Lizard', image: 'armadillolizard.jpg'}
-{id: 'asianvinesnake', name: 'Asian Vine Snake', image: 'asianvinesnake.jpg'}
-{id: 'asianwatermonitor', name: 'Asian Water Monitor', image: 'asianwatermonitor.jpg'}
-{id: 'australianwaterdragon', name: 'Australian Water Dragon', image: 'australianwaterdragon.jpg'}
-{id: 'axolotl', name: 'Axolotl', image: 'axolotl.jpg'}
-{id: 'ballpython', name: 'Ball Python', image: 'ballpython.jpg'}
-{id: 'bambooratsnake', name: 'Bamboo Rat Snake', image: 'bambooratsnake.jpg'}
-{id: 'bandedwatersnake', name: 'Banded Water Snake', image: 'bandedwatersnake.jpg'}
-{id: 'basilisk', name: 'Basilisk', image: 'basilisk.jpg'}
-{id: 'beardeddragon', name: 'Bearded Dragon', image: 'beardeddragon.jpg'}
-{id: 'beautysnake', name: 'Beauty Snake', image: 'beautysnake.jpg'}
-{id: 'blackheadedpython', name: 'Black-headed Python', image: 'blackheadedpython.jpg'}
-{id: 'blackandwhitetegu', name: 'Black And White Tegu', image: 'blackandwhitetegu.jpg'}
-{id: 'blackcaiman', name: 'Black Caiman', image: 'blackcaiman.jpg'}
-{id: 'blackdragonwatermonitor', name: 'Black Dragon Water Monitor', image: 'blackdragonwatermonitor.jpg'}
-{id: 'blackmamba', name: 'Black Mamba', image: 'blackmamba.jpg'}
-{id: 'blackracer', name: 'Black Racer', image: 'blackracer.jpg'}
-{id: 'blackthroatmonitor', name: 'Black Throat Monitor', image: 'blackthroatmonitor.jpg'}
-{id: 'blacktreemonitor', name: 'Black Tree Monitor', image: 'blacktreemonitor.jpg'}
-{id: 'blacktreeskink', name: 'Black Tree Skink', image: 'blacktreeskink.jpg'}
-{id: 'blindsnake', name: 'Blind Snake', image: 'blindsnake.jpg'}
-{id: 'bloodpython', name: 'Blood Python', image: 'bloodpython.jpg'}
-{id: 'bluetailedmonitor', name: 'Blue-tailed Monitor', image: 'bluetailedmonitor.jpg'}
-{id: 'bluetailskink', name: 'Blue Tail Skink', image: 'bluetailskink.jpg'}
-{id: 'bluetegu', name: 'Blue Tegu', image: 'bluetegu.jpg'}
-{id: 'bluetongueskink', name: 'Blue Tongue Skink', image: 'bluetongueskink.jpg'}
-{id: 'bluetreemonitor', name: 'Blue Tree Monitor', image: 'bluetreemonitor.jpg'}
-{id: 'boaconstrictor', name: 'Boa Constrictor', image: 'boaconstrictor.jpg'}
-{id: 'boelenpython', name: 'Boelen Python', image: 'boelenpython.jpg'}
-{id: 'boomslang', name: 'Boomslang', image: 'boomslang.jpg'}
-{id: 'boxturtle', name: 'Box Turtle', image: 'boxturtle.jpg'}
-{id: 'brazilianrainbowboa', name: 'Brazilian Rainbow Boa', image: 'brazilianrainbowboa.jpg'}
-{id: 'brooksgecko', name: 'Brooks Gecko', image: 'brooksgecko.jpg'}
-{id: 'brookskingsnake', name: 'Brooks King Snake', image: 'brookskingsnake.jpg'}
-{id: 'brownanole', name: 'Brown Anole', image: 'brownanole.jpg'}
-{id: 'brownsnake', name: 'Brown Snake', image: 'brownsnake.jpg'}
-{id: 'budgettsfrog', name: 'Budgett’s Frog', image: 'budgettsfrog.jpg'}
-{id: 'bullfrog', name: 'Bullfrog', image: 'bullfrog.jpg'}
-{id: 'bullsnake', name: 'Bull Snake', image: 'bullsnake.jpg'}
-{id: 'burmesepython', name: 'Burmese Python', image: 'burmesepython.jpg'}
-{id: 'bushmaster', name: 'Bushmaster', image: 'bushmaster.jpg'}
-{id: 'bushviper', name: 'Bush Viper', image: 'bushviper.jpg'}
-{id: 'caimanlizard', name: 'Caiman Lizard', image: 'caimanlizard.jpg'}
-{id: 'californiakingsnake', name: 'California King Snake', image: 'californiakingsnake.jpg'}
-{id: 'carpetchameleon', name: 'Carpet Chameleon', image: 'carpetchameleon.jpg'}
-{id: 'carpetpython', name: 'Carpet Python', image: 'carpetpython.jpg'}
-{id: 'catgecko', name: 'Cat Gecko', image: 'catgecko.jpg'}
-{id: 'cavegecko', name: 'Cave Gecko', image: 'cavegecko.jpg'}
-{id: 'centipedesnake', name: 'Centipede Snake', image: 'centipedesnake.jpg'}
-{id: 'chameleongecko', name: 'Chameleon Gecko', image: 'chameleongecko.jpg'}
-{id: 'cherryanole', name: 'Cherry Anole', image: 'cherryanole.jpg'}
-{id: 'chewie', name: 'Chewie', image: 'chewie.jpg'}
-{id: 'childrenspython', name: 'Children’s Python', image: 'childrenspython.jpg'}
-{id: 'chinesecavegecko', name: 'Chinese Cave Gecko', image: 'chinesecavegecko.jpg'}
-{id: 'chinesecrocodilelizard', name: 'Chinese Crocodile Lizard', image: 'chinesecrocodilelizard.jpg'}
-{id: 'chinesewaterdragon', name: 'Chinese Water Dragon', image: 'chinesewaterdragon.jpg'}
-{id: 'chorusfrog', name: 'Chorus Frog', image: 'chorusfrog.jpg'}
-{id: 'chuckwalla', name: 'Chuckwalla', image: 'chuckwalla.jpg'}
-{id: 'collaredlizard', name: 'Collared Lizard', image: 'collaredlizard.jpg'}
-{id: 'columbiantegu', name: 'Columbian Tegu', image: 'columbiantegu.jpg'}
-{id: 'commonsnappingturtle', name: 'Common Snapping Turtle', image: 'commonsnappingturtle.jpg'}
-{id: 'copperhead', name: 'Copperhead', image: 'copperhead.jpg'}
-{id: 'coralcobra', name: 'Coral Cobra', image: 'coralcobra.jpg'}
-{id: 'coralsnake', name: 'Coral Snake', image: 'coralsnake.jpg'}
-{id: 'cornsnake', name: 'Corn Snake', image: 'cornsnake.jpg'}
-{id: 'cottonmouth', name: 'Cottonmouth', image: 'cottonmouth.jpg'}
-{id: 'crestedanole', name: 'Crested Anole', image: 'crestedanole.jpg'}
-{id: 'crestedgecko', name: 'Crested Gecko', image: 'crestedgecko.jpg'}
-{id: 'crestedriverdragon', name: 'Crested River Dragon', image: 'crestedriverdragon.jpg'}
-{id: 'crocodilegecko', name: 'Crocodile Gecko', image: 'crocodilegecko.jpg'}
-{id: 'crocodilemonitor', name: 'Crocodile Monitor', image: 'crocodilemonitor.jpg'}
-{id: 'crocodiletegu', name: 'Crocodile Tegu', image: 'crocodiletegu.jpg'}
-{id: 'cubanfalsechameleon', name: 'Cuban False Chameleon', image: 'cubanfalsechameleon.jpg'}
-{id: 'curlytaillizard', name: 'Curly Tail Lizard', image: 'curlytaillizard.jpg'}
-{id: 'cuviersdwarfcaiman', name: 'Cuvier’s Dwarf Caiman', image: 'cuviersdwarfcaiman.jpg'}
-{id: 'dartfrog', name: 'Dart Frog', image: 'dartfrog.jpg'}
-{id: 'deathadder', name: 'Death Adder', image: 'deathadder.jpg'}
-{id: 'desertkingsnake', name: 'Desert King Snake', image: 'desertkingsnake.jpg'}
-{id: 'diamondbackrattlesnake', name: 'Diamondback Rattlesnake', image: 'diamondbackrattlesnake.jpg'}
-{id: 'dragonsnake', name: 'Dragon Snake', image: 'dragonsnake.jpg'}
-{id: 'dumerilsboa', name: 'Dumeril’s Boa', image: 'dumerilsboa.jpg'}
-{id: 'dumerilsmonitor', name: 'Dumeril’s Monitor', image: 'dumerilsmonitor.jpg'}
-{id: 'dumpytreefrog', name: 'Dumpy Tree Frog', image: 'dumpytreefrog.jpg'}
-{id: 'duskysalamander', name: 'Dusky Salamander', image: 'duskysalamander.jpg'}
-{id: 'dwarfcaiman', name: 'Dwarf Caiman', image: 'dwarfcaiman.jpg'}
-{id: 'easterncollaredlizard', name: 'Eastern Collared Lizard', image: 'easterncollaredlizard.jpg'}
-{id: 'easternhognosesnake', name: 'Eastern Hognose Snake', image: 'easternhognosesnake.jpg'}
-{id: 'easternnewt', name: 'Eastern Newt', image: 'easternnewt.jpg'}
-{id: 'eggeatingsnake', name: 'Egg-eating Snake', image: 'eggeatingsnake.jpg'}
-{id: 'eggeatingsnake', name: 'Egg Eating Snake', image: 'eggeatingsnake.jpg'}
-{id: 'egyptianasp', name: 'Egyptian Asp', image: 'egyptianasp.jpg'}
-{id: 'egyptiancobra', name: 'Egyptian Cobra', image: 'egyptiancobra.jpg'}
-{id: 'emeraldswift', name: 'Emerald Swift', image: 'emeraldswift.jpg'}
-{id: 'emeraldtreeboa', name: 'Emerald Tree Boa', image: 'emeraldtreeboa.jpg'}
-{id: 'emeraldtreeskink', name: 'Emerald Tree Skink', image: 'emeraldtreeskink.jpg'}
-{id: 'emmagraysforestlizard', name: 'Emma Gray’s Forest Lizard', image: 'emmagraysforestlizard.jpg'}
-{id: 'eyelashviper', name: 'Eyelash Viper', image: 'eyelashviper.jpg'}
-{id: 'falsewatercobra', name: 'False Water Cobra', image: 'falsewatercobra.jpg'}
-{id: 'fanfootedgecko', name: 'Fan Footed Gecko', image: 'fanfootedgecko.jpg'}
-{id: 'fattailedgecko', name: 'Fat Tailed Gecko', image: 'fattailedgecko.jpg'}
-{id: 'ferdelance', name: 'Fer-de-lance', image: 'ferdelance.jpg'}
-{id: 'firesalamander', name: 'Fire Salamander', image: 'firesalamander.jpg'}
-{id: 'fireskink', name: 'Fire Skink', image: 'fireskink.jpg'}
-{id: 'floridakingsnake', name: 'Florida King Snake', image: 'floridakingsnake.jpg'}
-{id: 'floridasnappingturtle', name: 'Florida Snapping Turtle', image: 'floridasnappingturtle.jpg'}
-{id: 'fowlerstoad', name: 'Fowler’s Toad', image: 'fowlerstoad.jpg'}
-{id: 'foxsnake', name: 'Fox Snake', image: 'foxsnake.jpg'}
-{id: 'freshwatercrocodile', name: 'Freshwater Crocodile', image: 'freshwatercrocodile.jpg'}
-{id: 'frilleddragon', name: 'Frilled Dragon', image: 'frilleddragon.jpg'}
-{id: 'frogeyegecko', name: 'Frog Eye Gecko', image: 'frogeyegecko.jpg'}
-{id: 'gaboonviper', name: 'Gaboon Viper', image: 'gaboonviper.jpg'}
-{id: 'galapagostortoise', name: 'Galapagos Tortoise', image: 'galapagostortoise.jpg'}
-{id: 'gargoylegecko', name: 'Gargoyle Gecko', image: 'gargoylegecko.jpg'}
-{id: 'gartersnake', name: 'Garter Snake', image: 'gartersnake.jpg'}
-{id: 'gharial', name: 'Gharial', image: 'gharial.jpg'}
-{id: 'giantdaygecko', name: 'Giant Day Gecko', image: 'giantdaygecko.jpg'}
-{id: 'giantplatedlizard', name: 'Giant Plated Lizard', image: 'giantplatedlizard.jpg'}
-{id: 'giantwaterskink', name: 'Giant Water Skink', image: 'giantwaterskink.jpg'}
-{id: 'gidgeeskink', name: 'Gidgee Skink', image: 'gidgeeskink.jpg'}
-{id: 'gilamonster', name: 'Gila Monster', image: 'gilamonster.jpg'}
-{id: 'glasslizard', name: 'Glass Lizard', image: 'glasslizard.jpg'}
-{id: 'glasstreefrog', name: 'Glass Tree Frog', image: 'glasstreefrog.jpg'}
-{id: 'glossysnake', name: 'Glossy Snake', image: 'glossysnake.jpg'}
-{id: 'goldentegu', name: 'Golden Tegu', image: 'goldentegu.jpg'}
-{id: 'gophersnake', name: 'Gopher Snake', image: 'gophersnake.jpg'}
-{id: 'grasssnake', name: 'Grass Snake', image: 'grasssnake.jpg'}
-{id: 'greenanaconda', name: 'Green Anaconda', image: 'greenanaconda.jpg'}
-{id: 'greenanole', name: 'Green Anole', image: 'greenanole.jpg'}
-{id: 'greeniguana', name: 'Green Iguana', image: 'greeniguana.jpg'}
-{id: 'greentreefrog', name: 'Green Tree Frog', image: 'greentreefrog.jpg'}
-{id: 'greentreemonitor', name: 'Green Tree Monitor', image: 'greentreemonitor.jpg'}
-{id: 'greentreepython', name: 'Green Tree Python', image: 'greentreepython.jpg'}
-{id: 'greytreefrog', name: 'Grey Tree Frog', image: 'greytreefrog.jpg'}
-{id: 'helmetedchameleon', name: 'Helmeted Chameleon', image: 'helmetedchameleon.jpg'}
-{id: 'helmetedgecko', name: 'Helmeted Gecko', image: 'helmetedgecko.jpg'}
-{id: 'hognosesnake', name: 'Hognose Snake', image: 'hognosesnake.jpg'}
-{id: 'hornedfrog', name: 'Horned Frog', image: 'hornedfrog.jpg'}
-{id: 'hornedlizard', name: 'Horned Lizard', image: 'hornedlizard.jpg'}
-{id: 'iguana', name: 'Iguana', image: 'iguana.jpg'}
-{id: 'indiancobra', name: 'Indian Cobra', image: 'indiancobra.jpg'}
-{id: 'indianspottedpondturtle', name: 'Indian Spotted Pond Turtle', image: 'indianspottedpondturtle.jpg'}
-{id: 'indigosnake', name: 'Indigo Snake', image: 'indigosnake.jpg'}
-{id: 'jacksonschameleon', name: 'Jackson’s Chameleon', image: 'jacksonschameleon.jpg'}
-{id: 'jararaca', name: 'Jararaca', image: 'jararaca.jpg'}
-{id: 'jararacussu', name: 'Jararacussu', image: 'jararacussu.jpg'}
-{id: 'javanwatermonitor', name: 'Javan Water Monitor', image: 'javanwatermonitor.jpg'}
-{id: 'jewelledlacerta', name: 'Jewelled Lacerta', image: 'jewelledlacerta.jpg'}
-{id: 'kenyansandboa', name: 'Kenyan Sand Boa', image: 'kenyansandboa.jpg'}
-{id: 'kingcobra', name: 'King Cobra', image: 'kingcobra.jpg'}
-{id: 'knobtailedgecko', name: 'Knob-tailed Gecko', image: 'knobtailedgecko.jpg'}
-{id: 'komododragon', name: 'Komodo Dragon', image: 'komododragon.jpg'}
-{id: 'lancehead', name: 'Lance Head', image: 'lancehead.jpg'}
-{id: 'leachie', name: 'Leachie', image: 'leachie.jpg'}
-{id: 'leafnosesnake', name: 'Leaf Nose Snake', image: 'leafnosesnake.jpg'}
-{id: 'leaftailedgecko', name: 'Leaf Tailed Gecko', image: 'leaftailedgecko.jpg'}
-{id: 'leopardfrog', name: 'Leopard Frog', image: 'leopardfrog.jpg'}
-{id: 'leopardgecko', name: 'Leopard Gecko', image: 'leopardgecko.jpg'}
-{id: 'leopardlizard', name: 'Leopard Lizard', image: 'leopardlizard.jpg'}
-{id: 'longtailedgrasslizard', name: 'Long Tailed Grass Lizard', image: 'longtailedgrasslizard.jpg'}
-{id: 'longtailsalamander', name: 'Long Tail Salamander', image: 'longtailsalamander.jpg'}
-{id: 'majorplatedlizard', name: 'Major Plated Lizard', image: 'majorplatedlizard.jpg'}
-{id: 'malaysiancatgecko', name: 'Malaysian Cat Gecko', image: 'malaysiancatgecko.jpg'}
-{id: 'mangrovemonitor', name: 'Mangrove Monitor', image: 'mangrovemonitor.jpg'}
-{id: 'mangrovesnake', name: 'Mangrove Snake', image: 'mangrovesnake.jpg'}
-{id: 'mapturtle', name: 'Map Turtle', image: 'mapturtle.jpg'}
-{id: 'marbledgecko', name: 'Marbled Gecko', image: 'marbledgecko.jpg'}
-{id: 'marbledsalamander', name: 'Marbled Salamander', image: 'marbledsalamander.jpg'}
-{id: 'marineiguana', name: 'Marine Iguana', image: 'marineiguana.jpg'}
-{id: 'massasauga', name: 'Massasauga', image: 'massasauga.jpg'}
-{id: 'matamata', name: 'Mata Mata', image: 'matamata.jpg'}
-{id: 'mexicanbeadedlizard', name: 'Mexican Beaded Lizard', image: 'mexicanbeadedlizard.jpg'}
-{id: 'mexicanblackkingsnake', name: 'Mexican Black King Snake', image: 'mexicanblackkingsnake.jpg'}
-{id: 'milksnake', name: 'Milk Snake', image: 'milksnake.jpg'}
-{id: 'monkeyanole', name: 'Monkey Anole', image: 'monkeyanole.jpg'}
-{id: 'monocledcobra', name: 'Monocled Cobra', image: 'monocledcobra.jpg'}
-{id: 'mosslyleaftailedgecko', name: 'Mossly Leaf-tailed Gecko', image: 'mosslyleaftailedgecko.jpg'}
-{id: 'mountainhorneddragon', name: 'Mountain Horned Dragon', image: 'mountainhorneddragon.jpg'}
-{id: 'mountainhornedlizard', name: 'Mountain Horned Lizard', image: 'mountainhornedlizard.jpg'}
-{id: 'mourninggecko', name: 'Mourning Gecko', image: 'mourninggecko.jpg'}
-{id: 'mudturtle', name: 'Mud Turtle', image: 'mudturtle.jpg'}
-{id: 'neondaygecko', name: 'Neon Day Gecko', image: 'neondaygecko.jpg'}
-{id: 'nilecrocodile', name: 'Nile Crocodile', image: 'nilecrocodile.jpg'}
-{id: 'nilemonitor', name: 'Nile Monitor', image: 'nilemonitor.jpg'}
-{id: 'northernwatersnake', name: 'Northern Water Snake', image: 'northernwatersnake.jpg'}
-{id: 'ocellatedgecko', name: 'Ocellated Gecko', image: 'ocellatedgecko.jpg'}
-{id: 'ocellatedskink', name: 'Ocellated Skink', image: 'ocellatedskink.jpg'}
-{id: 'orangethroatedskink', name: 'Orange Throated Skink', image: 'orangethroatedskink.jpg'}
-{id: 'ornatemonitor', name: 'Ornate Monitor', image: 'ornatemonitor.jpg'}
-{id: 'pacemanfrog', name: 'Paceman Frog', image: 'pacemanfrog.jpg'}
-{id: 'paintedagama', name: 'Painted Agama', image: 'paintedagama.jpg'}
-{id: 'paintedturtle', name: 'Painted Turtle', image: 'paintedturtle.jpg'}
-{id: 'pancaketortoise', name: 'Pancake Tortoise', image: 'pancaketortoise.jpg'}
-{id: 'pantherchameleon', name: 'Panther Chameleon', image: 'pantherchameleon.jpg'}
-{id: 'panthergecko', name: 'Panther Gecko', image: 'panthergecko.jpg'}
-{id: 'peachthroatmonitor', name: 'Peach Throat Monitor', image: 'peachthroatmonitor.jpg'}
-{id: 'petersbandedskink', name: 'Peter’s Banded Skink', image: 'petersbandedskink.jpg'}
-{id: 'pictusgecko', name: 'Pictus Gecko', image: 'pictusgecko.jpg'}
-{id: 'pinesnake', name: 'Pine Snake', image: 'pinesnake.jpg'}
-{id: 'pinktongueskink', name: 'Pink Tongue Skink', image: 'pinktongueskink.jpg'}
-{id: 'pipapipa', name: 'Pipa Pipa', image: 'pipapipa.jpg'}
-{id: 'pixiefrog', name: 'Pixie Frog', image: 'pixiefrog.jpg'}
-{id: 'puffadder', name: 'Puff Adder', image: 'puffadder.jpg'}
-{id: 'pygmyrattlesnake', name: 'Pygmy Rattlesnake', image: 'pygmyrattlesnake.jpg'}
-{id: 'queensnake', name: 'Queen Snake', image: 'queensnake.jpg'}
-{id: 'rainbowracerunnerlizard', name: 'Rainbow Racerunner Lizard', image: 'rainbowracerunnerlizard.jpg'}
-{id: 'rainbowwhiptaillizard', name: 'Rainbow Whiptail Lizard', image: 'rainbowwhiptaillizard.jpg'}
-{id: 'ratsnake', name: 'Rat Snake', image: 'ratsnake.jpg'}
-{id: 'rattlesnake', name: 'Rattlesnake', image: 'rattlesnake.jpg'}
-{id: 'redearedslider', name: 'Red-eared Slider', image: 'redearedslider.jpg'}
-{id: 'redeyedcrocodileskink', name: 'Red-eyed Crocodile Skink', image: 'redeyedcrocodileskink.jpg'}
-{id: 'redfootedtortoise', name: 'Red-footed Tortoise', image: 'redfootedtortoise.jpg'}
-{id: 'redbelliedswampsnake', name: 'Red Bellied Swamp Snake', image: 'redbelliedswampsnake.jpg'}
-{id: 'redeft', name: 'Red Eft', image: 'redeft.jpg'}
-{id: 'redeyedtreefrog', name: 'Red Eyed Tree Frog', image: 'redeyedtreefrog.jpg'}
-{id: 'redgardenskink', name: 'Red Garden Skink', image: 'redgardenskink.jpg'}
-{id: 'redsidedskink', name: 'Red Sided Skink', image: 'redsidedskink.jpg'}
-{id: 'redtailboa', name: 'Redtail Boa', image: 'redtailboa.jpg'}
-{id: 'redtegu', name: 'Red Tegu', image: 'redtegu.jpg'}
-{id: 'redvinesnake', name: 'Red Vine Snake', image: 'redvinesnake.jpg'}
-{id: 'reticulatedpython', name: 'Reticulated Python', image: 'reticulatedpython.jpg'}
-{id: 'rhinocerosiguana', name: 'Rhinoceros Iguana', image: 'rhinocerosiguana.jpg'}
-{id: 'rhinoviper', name: 'Rhino Viper', image: 'rhinoviper.jpg'}
-{id: 'ribbonsnake', name: 'Ribbon Snake', image: 'ribbonsnake.jpg'}
-{id: 'ridgetailedmonitor', name: 'Ridge-tailed Monitor', image: 'ridgetailedmonitor.jpg'}
-{id: 'ringnecksnake', name: 'Ringneck Snake', image: 'ringnecksnake.jpg'}
-{id: 'rosyboa', name: 'Rosy Boa', image: 'rosyboa.jpg'}
-{id: 'roughneckedmonitor', name: 'Rough-necked Monitor', image: 'roughneckedmonitor.jpg'}
-{id: 'roughgreensnake', name: 'Rough Green Snake', image: 'roughgreensnake.jpg'}
-{id: 'rubberboa', name: 'Rubber Boa', image: 'rubberboa.jpg'}
-{id: 'russiantortoise', name: 'Russian Tortoise', image: 'russiantortoise.jpg'}
-{id: 'saltwatercrocodile', name: 'Saltwater Crocodile', image: 'saltwatercrocodile.jpg'}
-{id: 'sandboa', name: 'Sand Boa', image: 'sandboa.jpg'}
-{id: 'sandfishskink', name: 'Sandfish Skink', image: 'sandfishskink.jpg'}
-{id: 'satanicleaftailgecko', name: 'Satanic Leaftail Gecko', image: 'satanicleaftailgecko.jpg'}
-{id: 'savannamonitor', name: 'Savanna Monitor', image: 'savannamonitor.jpg'}
-{id: 'sawscaledviper', name: 'Saw-scaled Viper', image: 'sawscaledviper.jpg'}
-{id: 'scarletkingsnake', name: 'Scarlet King Snake', image: 'scarletkingsnake.jpg'}
-{id: 'seakrait', name: 'Sea Krait', image: 'seakrait.jpg'}
-{id: 'seaturtle', name: 'Sea Turtle', image: 'seaturtle.jpg'}
-{id: 'serasinorumgecko', name: 'Serasinorum Gecko', image: 'serasinorumgecko.jpg'}
-{id: 'sheltopusik', name: 'Sheltopusik', image: 'sheltopusik.jpg'}
-{id: 'sidewinder', name: 'Sidewinder', image: 'sidewinder.jpg'}
-{id: 'similismonitor', name: 'Similis Monitor', image: 'similismonitor.jpg'}
-{id: 'siren', name: 'Siren', image: 'siren.jpg'}
-{id: 'slimysalamander', name: 'Slimy Salamander', image: 'slimysalamander.jpg'}
-{id: 'smoothfrontcaiman', name: 'Smooth Front Caiman', image: 'smoothfrontcaiman.jpg'}
-{id: 'smoothgreensnake', name: 'Smooth Green Snake', image: 'smoothgreensnake.jpg'}
-{id: 'smoothsnake', name: 'Smooth Snake', image: 'smoothsnake.jpg'}
-{id: 'softshellturtle', name: 'Softshell Turtle', image: 'softshellturtle.jpg'}
-{id: 'solomonislandskink', name: 'Solomon Island Skink', image: 'solomonislandskink.jpg'}
-{id: 'spinylizard', name: 'Spiny Lizard', image: 'spinylizard.jpg'}
-{id: 'spinywaterskink', name: 'Spiny Water Skink', image: 'spinywaterskink.jpg'}
-{id: 'spittingcobra', name: 'Spitting Cobra', image: 'spittingcobra.jpg'}
-{id: 'spottedpython', name: 'Spotted Python', image: 'spottedpython.jpg'}
-{id: 'spottedsalamander', name: 'Spotted Salamander', image: 'spottedsalamander.jpg'}
-{id: 'springpeeper', name: 'Spring Peeper', image: 'springpeeper.jpg'}
-{id: 'sudanplatedlizard', name: 'Sudan Plated Lizard', image: 'sudanplatedlizard.jpg'}
-{id: 'sulcatatortoise', name: 'Sulcata Tortoise', image: 'sulcatatortoise.jpg'}
-{id: 'sunbeamsnake', name: 'Sunbeam Snake', image: 'sunbeamsnake.jpg'}
-{id: 'sunskink', name: 'Sun Skink', image: 'sunskink.jpg'}
-{id: 'taipan', name: 'Taipan', image: 'taipan.jpg'}
-{id: 'tentacledsnake', name: 'Tentacled Snake', image: 'tentacledsnake.jpg'}
-{id: 'thornydevil', name: 'Thorny Devil', image: 'thornydevil.jpg'}
-{id: 'tigergecko', name: 'Tiger Gecko', image: 'tigergecko.jpg'}
-{id: 'tigersalamander', name: 'Tiger Salamander', image: 'tigersalamander.jpg'}
-{id: 'timberrattlesnake', name: 'Timber Rattlesnake', image: 'timberrattlesnake.jpg'}
-{id: 'timormonitor', name: 'Timor Monitor', image: 'timormonitor.jpg'}
-{id: 'tokaygecko', name: 'Tokay Gecko', image: 'tokaygecko.jpg'}
-{id: 'tomatofrog', name: 'Tomato Frog', image: 'tomatofrog.jpg'}
-{id: 'treemonitor', name: 'Tree Monitor', image: 'treemonitor.jpg'}
-{id: 'tuatara', name: 'Tuatara', image: 'tuatara.jpg'}
-{id: 'twolinesalamander', name: 'Two Line Salamander', image: 'twolinesalamander.jpg'}
-{id: 'uromastyx', name: 'Uromastyx', image: 'uromastyx.jpg'}
-{id: 'veiledchameleon', name: 'Veiled Chameleon', image: 'veiledchameleon.jpg'}
-{id: 'velvetswampsnake', name: 'Velvet Swamp Snake', image: 'velvetswampsnake.jpg'}
-{id: 'viperboa', name: 'Viper Boa', image: 'viperboa.jpg'}
-{id: 'vipergecko', name: 'Viper Gecko', image: 'vipergecko.jpg'}
-{id: 'waterdog', name: 'Water Dog', image: 'waterdog.jpg'}
-{id: 'wedgesnoutedskink', name: 'Wedge-snouted Skink', image: 'wedgesnoutedskink.jpg'}
-{id: 'westernhognosesnake', name: 'Western Hognose Snake', image: 'westernhognosesnake.jpg'}
-{id: 'whitelippedpython', name: 'White-lipped Python', image: 'whitelippedpython.jpg'}
-{id: 'whitethroatedmonitor', name: 'White-throated Monitor', image: 'whitethroatedmonitor.jpg'}
-{id: 'whitestreefrog', name: 'White’s Tree Frog', image: 'whitestreefrog.jpg'}
-{id: 'wolfsnake', name: 'Wolf Snake', image: 'wolfsnake.jpg'}
-{id: 'womapython', name: 'Woma Python', image: 'womapython.jpg'}
-{id: 'woodhousestoad', name: 'Woodhouse’s Toad', image: 'woodhousestoad.jpg'}
-{id: 'yellowanaconda', name: 'Yellow Anaconda', image: 'yellowanaconda.jpg'}
-{id: 'yellowbellyslider', name: 'Yellow Belly Slider', image: 'yellowbellyslider.jpg'}
+{id: 'abroniaarborealalligatorlizard', name: 'Abronia Arboreal Alligator Lizard', image: 'https://i.imgur.com/1Kk0eYv.png'},
+{id: 'ackiemonitor', name: 'Ackie Monitor', image: 'https://i.imgur.com/ceXCUgu.jpg'},
+{id: 'blackhousesnake', name: 'Black House Snake', image: 'https://i.imgur.com/g3315HS.jpg'},
+{id: 'africanbluetailskink', name: 'African Blue Tail Skink', image: 'https://i.imgur.com/n8CGVFw.jpg'},
+{id: 'africanfilesnake', name: 'African File Snake', image: 'https://i.imgur.com/9k8S4tk.jpg'},
+{id: 'africangreenbushsnake', name: 'African Green Bush Snake', image: 'https://i.imgur.com/vo27GHo.jpg'},
+{id: 'africanrockpython', name: 'African Rock Python', image: 'https://i.imgur.com/IQiLC0g.png'},
+{id: 'alligatorsnappingturtle', name: 'Alligator Snapping Turtle', image: 'https://i.imgur.com/Hm9HEdy.png'},
+{id: 'amazonmilkfrog', name: 'Amazon Milk Frog', image: 'https://i.imgur.com/uF9EQTC.jpg'},
+{id: 'amazontreeboa', name: 'Amazon Tree Boa', image: 'https://i.imgur.com/UBOU17I.jpg'},
+{id: 'americanalligator', name: 'American Alligator', image: 'https://i.imgur.com/LLVNBAN.jpg'},
+{id: 'americancrocodile', name: 'American Crocodile', image: 'https://i.imgur.com/OnryTRj.jpg'},
+{id: 'angolanpython', name: 'Angolan Python', image: 'https://i.imgur.com/dXn6CtA.jpg'},
+{id: 'arabiansandboa', name: 'Arabian Sand Boa', image: 'https://i.imgur.com/5qF8dIa.jpg'},
+{id: 'argusmonitor', name: 'Argus Monitor', image: 'https://i.imgur.com/VbWCgBE.jpg'},
+{id: 'armadillolizard', name: 'Armadillo Lizard', image: 'https://i.imgur.com/NReBTnI.jpg'},
+{id: 'asianvinesnake', name: 'Asian Vine Snake', image: 'https://i.imgur.com/pBGrTmV.jpg'},
+{id: 'paradisetreesnake', name: 'Paradise Tree Snake', image: 'https://i.imgur.com/C9niPQB.jpg'},
+{id: 'asianwatermonitor', name: 'Asian Water Monitor', image: 'https://i.imgur.com/HLk8jZy.jpg'},
+{id: 'australianwaterdragon', name: 'Australian Water Dragon', image: 'https://i.imgur.com/JzejWdP.jpg'},
+{id: 'axolotl', name: 'Axolotl', image: 'https://i.imgur.com/XudH5PX.jpg'},
+{id: 'ballpython', name: 'Ball Python', image: 'https://i.imgur.com/0GVkmMZ.jpg'},
+{id: 'bambooratsnake', name: 'Bamboo Rat Snake', image: 'https://i.imgur.com/j7ORCrQ.jpg'},
+{id: 'bandedwatersnake', name: 'Banded Water Snake', image: 'https://i.imgur.com/EY5pEo7.jpg'},
+{id: 'basilisk', name: 'Basilisk', image: 'https://i.imgur.com/yQmjyEO.jpg'},
+{id: 'beardeddragon', name: 'Bearded Dragon', image: 'https://i.imgur.com/dOEyLrW.jpg'},
+{id: 'beautysnake', name: 'Beauty Snake', image: 'https://i.imgur.com/opj3Slv.jpg'},
+{id: 'blackheadedpython', name: 'Black-headed Python', image: 'https://i.imgur.com/ov0ElIw.jpg'},
+{id: 'blackandwhitetegu', name: 'Black And White Tegu', image: 'https://i.imgur.com/NiCi6J5.jpg'},
+{id: 'blackcaiman', name: 'Black Caiman', image: 'https://i.imgur.com/DwNxIA5.jpg'},
+{id: 'blackdragonwatermonitor', name: 'Black Dragon Water Monitor', image: 'https://i.imgur.com/00EG6AX.jpg'},
+{id: 'blackmamba', name: 'Black Mamba', image: 'https://i.imgur.com/E5TCMEL.jpg'},
+{id: 'blackracer', name: 'Black Racer', image: 'https://i.imgur.com/COsoaM8.jpg'},
+{id: 'blackthroatmonitor', name: 'Black Throat Monitor', image: 'https://i.imgur.com/ns8hxb6.jpg'},
+{id: 'blacktreemonitor', name: 'Black Tree Monitor', image: 'https://i.imgur.com/wwWxY44.jpg'},
+{id: 'blacktreeskink', name: 'Black Tree Skink', image: 'https://i.imgur.com/ovffSiM.jpg'},
+{id: 'blindsnake', name: 'Blind Snake', image: 'https://i.imgur.com/PopPaN4.jpg'},
+{id: 'bloodpython', name: 'Blood Python', image: 'https://i.imgur.com/Gjjhpla.jpg'},
+{id: 'bluetailedmonitor', name: 'Blue-tailed Monitor', image: 'https://i.imgur.com/q6QIRv0.jpg'},
+{id: 'bluetegu', name: 'Blue Tegu', image: 'https://i.imgur.com/ArdD8UX.jpg'},
+{id: 'bluetongueskink', name: 'Blue Tongue Skink', image: 'https://i.imgur.com/2IGgFjb.jpg'},
+{id: 'bluetreemonitor', name: 'Blue Tree Monitor', image: 'https://i.imgur.com/N6RuA1q.jpg'},
+{id: 'boaconstrictor', name: 'Boa Constrictor', image: 'https://i.imgur.com/5WgtCvR.jpg'},
+{id: 'boelenpython', name: 'Boelen Python', image: 'https://i.imgur.com/iFkRK05.jpg'},
+{id: 'boomslang', name: 'Boomslang', image: 'https://i.imgur.com/1VQV98G.jpg'},
+{id: 'boxturtle', name: 'Box Turtle', image: 'https://i.imgur.com/YM4shqQ.jpg'},
+{id: 'brazilianrainbowboa', name: 'Brazilian Rainbow Boa', image: 'https://i.imgur.com/Xh8NbqD.jpg'},
+{id: 'brooksgecko', name: 'Brooks Gecko', image: 'imahttps://i.imgur.com/V7nYoQZ.jpg'},
+{id: 'brookskingsnake', name: 'Brooks King Snake', image: 'https://i.imgur.com/OBQA2GN.jpg'},
+{id: 'brownanole', name: 'Brown Anole', image: 'https://i.imgur.com/j3mD8z8.jpg'},
+{id: 'brownsnake', name: 'Brown Snake', image: 'https://i.imgur.com/Qr6tvVs.jpg'},
+{id: 'budgettsfrog', name: 'Budgett’s Frog', image: 'https://i.imgur.com/l9ucwSO.jpg'},
+{id: 'bullfrog', name: 'Bullfrog', image: 'https://i.imgur.com/fXMqetK.jpg'},
+{id: 'bullsnake', name: 'Bull Snake', image: 'https://i.imgur.com/X2QSKID.jpg'},
+{id: 'burmesepython', name: 'Burmese Python', image: 'https://i.imgur.com/OjCFzEf.jpg'},
+{id: 'bushmaster', name: 'Bushmaster', image: 'https://i.imgur.com/WPHXHgW.jpg'},
+{id: 'bushviper', name: 'Bush Viper', image: 'https://i.imgur.com/RiRUP1w.jpg'},
+{id: 'caimanlizard', name: 'Caiman Lizard', image: 'https://i.imgur.com/hqfxhkW.jpg'},
+{id: 'californiakingsnake', name: 'California King Snake', image: 'https://i.imgur.com/R3kkH6t.jpg'},
+{id: 'carpetchameleon', name: 'Carpet Chameleon', image: 'https://i.imgur.com/s9qaLj7.jpg'},
+{id: 'carpetpython', name: 'Carpet Python', image: 'https://i.imgur.com/FMdurec.jpg'},
+{id: 'centipedesnake', name: 'Centipede Snake', image: 'https://i.imgur.com/QoTK9rX.jpg'},
+{id: 'chameleongecko', name: 'Chameleon Gecko', image: 'https://i.imgur.com/PyNoI3N.jpg'},
+{id: 'cherryanole', name: 'Cherry Anole', image: 'https://i.imgur.com/n2iLyZ0.jpg'},
+{id: 'chewie', name: 'Chewie', image: 'https://i.imgur.com/HP6UcYS.jpg'},
+{id: 'childrenspython', name: 'Children’s Python', image: 'https://i.imgur.com/SLoa486.jpg'},
+{id: 'chinesecavegecko', name: 'Chinese Cave Gecko', image: 'https://i.imgur.com/bm7vUMn.jpg'},
+{id: 'chinesecrocodilelizard', name: 'Chinese Crocodile Lizard', image: 'https://i.imgur.com/UYQjbxx.jpg'},
+{id: 'chinesewaterdragon', name: 'Chinese Water Dragon', image: 'https://i.imgur.com/pfqpwp8.jpg'},
+{id: 'chorusfrog', name: 'Chorus Frog', image: 'https://i.imgur.com/RvAcWzw.jpg'},
+{id: 'chuckwalla', name: 'Chuckwalla', image: 'https://i.imgur.com/bZD9KOF.jpg'},
+{id: 'columbiantegu', name: 'Columbian Tegu', image: 'https://i.imgur.com/WeEUr35.jpg'},
+{id: 'commonsnappingturtle', name: 'Common Snapping Turtle', image: 'https://i.imgur.com/zLGnkW3.jpg'},
+{id: 'copperhead', name: 'Copperhead', image: 'https://i.imgur.com/Yzl2wr0.jpg'},
+{id: 'coralcobra', name: 'Coral Cobra', image: 'https://i.imgur.com/OUjDzvd.jpg'},
+{id: 'coralsnake', name: 'Coral Snake', image: 'https://i.imgur.com/1CK13DJ.jpg'},
+{id: 'cornsnake', name: 'Corn Snake', image: 'https://i.imgur.com/1sVlJwM.jpg'},
+{id: 'cottonmouth', name: 'Cottonmouth', image: 'https://i.imgur.com/ZIdvbdT.jpg'},
+{id: 'crestedanole', name: 'Crested Anole', image: 'https://i.imgur.com/rRI1b3s.jpg'},
+{id: 'crestedgecko', name: 'Crested Gecko', image: 'https://i.imgur.com/5hSfYvQ.jpg'},
+{id: 'crestedriverdragon', name: 'Crested River Dragon', image: 'https://i.imgur.com/SDYEdaC.jpg'},
+{id: 'crocodilegecko', name: 'Crocodile Gecko', image: 'https://i.imgur.com/Q3qiOc6.jpg'},
+{id: 'crocodilemonitor', name: 'Crocodile Monitor', image: 'https://i.imgur.com/b0G90e6.jpg'},
+{id: 'crocodiletegu', name: 'Crocodile Tegu', image: 'https://i.imgur.com/dG0Cgny.jpg'},
+{id: 'cubanfalsechameleon', name: 'Cuban False Chameleon', image: 'https://i.imgur.com/sNs5Q76.jpg'},
+{id: 'curlytaillizard', name: 'Curly Tail Lizard', image: 'https://i.imgur.com/Dpyovex.jpg'},
+{id: 'cuviersdwarfcaiman', name: 'Cuvier’s Dwarf Caiman', image: 'https://i.imgur.com/Ej1EwoI.jpg'},
+{id: 'dartfrog', name: 'Dart Frog', image: 'https://i.imgur.com/3YigPNg.jpg'},
+{id: 'deathadder', name: 'Death Adder', image: 'https://i.imgur.com/sPlFEWH.jpg'},
+{id: 'desertkingsnake', name: 'Desert King Snake', image: 'https://i.imgur.com/dlhdCJh.jpg'},
+{id: 'diamondbackrattlesnake', name: 'Diamondback Rattlesnake', image: 'https://i.imgur.com/BHWr53x.jpg'},
+{id: 'dragonsnake', name: 'Dragon Snake', image: 'https://i.imgur.com/vgIDy5V.jpg'},
+{id: 'dumerilsboa', name: 'Dumeril’s Boa', image: 'https://i.imgur.com/0zNmz0v.jpg'},
+{id: 'dumerilsmonitor', name: 'Dumeril’s Monitor', image: 'https://i.imgur.com/bb06dfm.jpg'},
+{id: 'dumpytreefrog', name: 'Dumpy Tree Frog', image: 'https://i.imgur.com/E7FuMTy.jpg'},
+{id: 'duskysalamander', name: 'Dusky Salamander', image: 'https://i.imgur.com/h1eWHbX.jpg'},
+{id: 'easterncollaredlizard', name: 'Eastern Collared Lizard', image: 'https://i.imgur.com/KJy6HYk.jpg'},
+{id: 'easternnewt', name: 'Eastern Newt', image: 'https://i.imgur.com/X8t9g3U.jpg'},
+{id: 'eggeatingsnake', name: 'Egg Eating Snake', image: 'https://i.imgur.com/cgAHlEe.jpg'},
+{id: 'egyptianasp', name: 'Egyptian Asp', image: 'https://i.imgur.com/LoJLGCs.jpg'},
+{id: 'emeraldswift', name: 'Emerald Swift', image: 'https://i.imgur.com/pm8Xf3R.jpg'},
+{id: 'emeraldtreeboa', name: 'Emerald Tree Boa', image: 'https://i.imgur.com/c4KjRGW.jpg'},
+{id: 'emeraldtreeskink', name: 'Emerald Tree Skink', image: 'https://i.imgur.com/TawreOr.jpg'},
+{id: 'emmagraysforestlizard', name: 'Emma Gray’s Forest Lizard', image: 'https://i.imgur.com/nszTcM9.jpg'},
+{id: 'eyelashviper', name: 'Eyelash Viper', image: 'https://i.imgur.com/mnoriDZ.jpg'},
+{id: 'falsewatercobra', name: 'False Water Cobra', image: 'https://i.imgur.com/S03TYOO.jpg'},
+{id: 'fanfootedgecko', name: 'Fan Footed Gecko', image: 'https://i.imgur.com/97zaxwV.jpg'},
+{id: 'fattailedgecko', name: 'Fat Tailed Gecko', image: 'https://i.imgur.com/vkKRTHN.jpg'},
+{id: 'ferdelance', name: 'Fer-de-lance', image: 'https://i.imgur.com/t5XTtRx.jpg'},
+{id: 'firesalamander', name: 'Fire Salamander', image: 'https://i.imgur.com/NJX03nm.jpg'},
+{id: 'fireskink', name: 'Fire Skink', image: 'https://i.imgur.com/E2juQlk.jpg'},
+{id: 'floridakingsnake', name: 'Florida King Snake', image: 'https://i.imgur.com/PEMkuEY.jpg'},
+{id: 'floridasnappingturtle', name: 'Florida Snapping Turtle', image: 'https://i.imgur.com/8CQpCs4.jpg'},
+{id: 'fowlerstoad', name: 'Fowler’s Toad', image: 'https://i.imgur.com/0QVCikI.jpg'},
+{id: 'foxsnake', name: 'Fox Snake', image: 'https://i.imgur.com/FWahoAS.jpg'},
+{id: 'frilleddragon', name: 'Frilled Dragon', image: 'https://i.imgur.com/K24gL65.jpg'},
+{id: 'frogeyegecko', name: 'Frog Eye Gecko', image: 'https://i.imgur.com/Wu3LlI5.jpg'},
+{id: 'gaboonviper', name: 'Gaboon Viper', image: 'https://i.imgur.com/mVe2JVq.jpg'},
+{id: 'galapagostortoise', name: 'Galapagos Tortoise', image: 'https://i.imgur.com/vVHxT5q.jpg'},
+{id: 'gargoylegecko', name: 'Gargoyle Gecko', image: 'https://i.imgur.com/95GPBaQ.jpg'},
+{id: 'gartersnake', name: 'Garter Snake', image: 'https://i.imgur.com/HvlPD8d.jpg'},
+{id: 'giantdaygecko', name: 'Giant Day Gecko', image: 'https://i.imgur.com/AF0tgVK.jpg'},
+{id: 'majorplatedlizard', name: 'Major Plated Lizard', image: 'https://i.imgur.com/TcXD6uy.jpg'},
+{id: 'giantwaterskink', name: 'Giant Water Skink', image: 'https://i.imgur.com/vuIffrg.jpg'},
+{id: 'gidgeeskink', name: 'Gidgee Skink', image: 'https://i.imgur.com/ikDbwFP.jpg'},
+{id: 'gilamonster', name: 'Gila Monster', image: 'https://i.imgur.com/BmdAvEP.jpg'},
+{id: 'glasslizard', name: 'Glass Lizard', image: 'https://i.imgur.com/GrBS52v.jpg'},
+{id: 'glasstreefrog', name: 'Glass Tree Frog', image: 'https://i.imgur.com/ylmLEj7.jpg'},
+{id: 'glossysnake', name: 'Glossy Snake', image: 'https://i.imgur.com/ADfzhBK.jpg'},
+{id: 'goldentegu', name: 'Golden Tegu', image: 'https://i.imgur.com/IHABoLI.jpg'},
+{id: 'gophersnake', name: 'Gopher Snake', image: 'https://i.imgur.com/rELNJvA.jpg'},
+{id: 'grasssnake', name: 'Grass Snake', image: 'https://i.imgur.com/JgXonji.jpg'},
+{id: 'greenanaconda', name: 'Green Anaconda', image: 'https://i.imgur.com/mNMikaN.jpg'},
+{id: 'greenanole', name: 'Green Anole', image: 'https://i.imgur.com/RYoi2P6.jpg'},
+{id: 'greeniguana', name: 'Green Iguana', image: 'https://i.imgur.com/ZscpXkC.jpg'},
+{id: 'greentreefrog', name: 'Green Tree Frog', image: 'https://i.imgur.com/cjAvsUE.jpg'},
+{id: 'greentreemonitor', name: 'Green Tree Monitor', image: 'https://i.imgur.com/dNFlnPe.jpg'},
+{id: 'greentreepython', name: 'Green Tree Python', image: 'https://i.imgur.com/whr6TUd.jpg'},
+{id: 'greytreefrog', name: 'Grey Tree Frog', image: 'https://i.imgur.com/iVNZN7o.jpg'},
+{id: 'helmetedchameleon', name: 'Helmeted Chameleon', image: 'https://i.imgur.com/FeOFxW1.jpg'},
+{id: 'helmetedgecko', name: 'Helmeted Gecko', image: 'https://i.imgur.com/lObtEv8.jpg'},
+{id: 'hognosesnake', name: 'Hognose Snake', image: 'https://i.imgur.com/gir3iAP.jpg'},
+{id: 'hornedfrog', name: 'Horned Frog', image: 'https://i.imgur.com/uxJGoHv.jpg'},
+{id: 'hornedlizard', name: 'Horned Lizard', image: 'https://i.imgur.com/UkL7DLS.jpg'},
+{id: 'indianpurplefrog', name: 'Indian Purple Frog', image: 'https://i.imgur.com/dkb6KN3.jpg'},
+{id: 'indianspottedpondturtle', name: 'Indian Spotted Pond Turtle', image: 'https://i.imgur.com/FZN5UwN.jpg'},
+{id: 'indigosnake', name: 'Indigo Snake', image: 'https://i.imgur.com/BvEV7hG.jpg'},
+{id: 'jacksonschameleon', name: 'Jackson’s Chameleon', image: 'https://i.imgur.com/Ae2t5YA.jpg'},
+{id: 'jewelledlacerta', name: 'Jewelled Lacerta', image: 'https://i.imgur.com/ax7rox7.jpg'},
+{id: 'kenyansandboa', name: 'Kenyan Sand Boa', image: 'https://i.imgur.com/f25ukvM.jpg'},
+{id: 'kingcobra', name: 'King Cobra', image: 'https://i.imgur.com/bvraYhl.jpg'},
+{id: 'knobtailedgecko', name: 'Knob-tailed Gecko', image: 'https://i.imgur.com/k9O08fR.jpg'},
+{id: 'komododragon', name: 'Komodo Dragon', image: 'https://i.imgur.com/3tRC8Sy.jpg'},
+{id: 'lancehead', name: 'Lance Head', image: 'https://i.imgur.com/NW1tzZR.jpg'},
+{id: 'leachie', name: 'Leachie', image: 'https://i.imgur.com/cND9kIe.jpg'},
+{id: 'leafnosesnake', name: 'Leaf Nose Snake', image: 'https://i.imgur.com/2uP6djJ.jpg'},
+{id: 'leopardfrog', name: 'Leopard Frog', image: 'https://i.imgur.com/2AoD17w.jpg'},
+{id: 'leopardtortoise', name: 'Leopard Tortoise', image: 'https://i.imgur.com/DyV68bO.jpg'},
+{id: 'leopardgecko', name: 'Leopard Gecko', image: 'https://i.imgur.com/mr6VWcs.jpg'},
+{id: 'leopardlizard', name: 'Leopard Lizard', image: 'https://i.imgur.com/LElrTa7.jpg'},
+{id: 'longtailedgrasslizard', name: 'Long Tailed Grass Lizard', image: 'https://i.imgur.com/4J4ReQw.jpg'},
+{id: 'longtailsalamander', name: 'Long Tail Salamander', image: 'https://i.imgur.com/2euhrUV.jpg'},
+{id: 'malaysiancatgecko', name: 'Malaysian Cat Gecko', image: 'https://i.imgur.com/DMPznXK.jpg'},
+{id: 'mangrovemonitor', name: 'Mangrove Monitor', image: 'https://i.imgur.com/asP5IrO.jpg'},
+{id: 'mangrovesnake', name: 'Mangrove Snake', image: 'https://i.imgur.com/hlMuYzd.jpg'},
+{id: 'mapturtle', name: 'Map Turtle', image: 'https://i.imgur.com/f3Qaeir.jpg'},
+{id: 'marbledgecko', name: 'Marbled Gecko', image: 'https://i.imgur.com/sHQEHwl.jpg'},
+{id: 'marbledsalamander', name: 'Marbled Salamander', image: 'https://i.imgur.com/PDZhqrV.jpg'},
+{id: 'massasauga', name: 'Massasauga', image: 'https://i.imgur.com/GyX0akW.jpg'},
+{id: 'matamata', name: 'Mata Mata', image: 'https://i.imgur.com/C9MmIt1.jpg'},
+{id: 'mexicanbeadedlizard', name: 'Mexican Beaded Lizard', image: 'https://i.imgur.com/Ktr9W9W.jpg'},
+{id: 'mexicanblackkingsnake', name: 'Mexican Black King Snake', image: 'https://i.imgur.com/ipPmZ2G.jpg'},
+{id: 'milksnake', name: 'Milk Snake', image: 'https://i.imgur.com/fO9mXqo.jpg'},
+{id: 'monkeyanole', name: 'Monkey Anole', image: 'https://i.imgur.com/2MiWoB8.jpg'},
+{id: 'monocledcobra', name: 'Monocled Cobra', image: 'https://i.imgur.com/Dx3QCGS.jpg'},
+{id: 'mosslyleaftailedgecko', name: 'Mossly Leaf-tailed Gecko', image: 'https://i.imgur.com/iPDcR9Y.jpg'},
+{id: 'mountainhorneddragon', name: 'Mountain Horned Dragon', image: 'https://i.imgur.com/oG5ATAc.jpg'},
+{id: 'mourninggecko', name: 'Mourning Gecko', image: 'https://i.imgur.com/SRmAa36.jpg'},
+{id: 'mudturtle', name: 'Mud Turtle', image: 'https://i.imgur.com/9PydKui.jpg'},
+{id: 'nilecrocodile', name: 'Nile Crocodile', image: 'https://i.imgur.com/rZRThzv.jpg'},
+{id: 'nightsnake', name: 'Night Snake', image: 'https://i.imgur.com/dlrfCYT.jpg'},
+{id: 'nilemonitor', name: 'Nile Monitor', image: 'https://i.imgur.com/VN35b93.jpg'},
+{id: 'northernwatersnake', name: 'Northern Water Snake', image: 'https://i.imgur.com/xgy5sLc.jpg'},
+{id: 'ocellatedgecko', name: 'Ocellated Gecko', image: 'https://i.imgur.com/IlhY8Fy.jpg'},
+{id: 'ocellatedskink', name: 'Ocellated Skink', image: 'https://i.imgur.com/Pr1Whkk.jpg'},
+{id: 'orangethroatedskink', name: 'Orange Throated Skink', image: 'https://i.imgur.com/rTTvA5e.jpg'},
+{id: 'pacmanfrog', name: 'Pacman Frog', image: 'https://i.imgur.com/VWFkp5t.jpg'},
+{id: 'paintedagama', name: 'Painted Agama', image: 'https://i.imgur.com/C91Ja4u.jpg'},
+{id: 'paintedturtle', name: 'Painted Turtle', image: 'https://i.imgur.com/nDgbwIN.jpg'},
+{id: 'pancaketortoise', name: 'Pancake Tortoise', image: 'https://i.imgur.com/lhGr84q.jpg'},
+{id: 'pantherchameleon', name: 'Panther Chameleon', image: 'https://i.imgur.com/1bTE8I7.jpg'},
+{id: 'panthergecko', name: 'Panther Gecko', image: 'https://i.imgur.com/XbJaQSi.jpg'},
+{id: 'peachthroatmonitor', name: 'Peach Throat Monitor', image: 'https://i.imgur.com/v6pUwEv.jpg'},
+{id: 'petersbandedskink', name: 'Peter’s Banded Skink', image: 'https://i.imgur.com/5yd1GzF.jpg'},
+{id: 'pinesnake', name: 'Pine Snake', image: 'https://i.imgur.com/SIyyT86.jpg'},
+{id: 'pinktongueskink', name: 'Pink Tongue Skink', image: 'https://i.imgur.com/hiC07XT.jpg'},
+{id: 'pixiefrog', name: 'Pixie Frog', image: 'https://i.imgur.com/xrIWCl0.jpg'},
+{id: 'puffadder', name: 'Puff Adder', image: 'https://i.imgur.com/J02ED8g.jpg'},
+{id: 'pygmyrattlesnake', name: 'Pygmy Rattlesnake', image: 'https://i.imgur.com/9g5OZDZ.jpg'},
+{id: 'queensnake', name: 'Queen Snake', image: 'https://i.imgur.com/T6DEzVr.jpg'},
+{id: 'rainbowracerunnerlizard', name: 'Rainbow Racerunner Lizard', image: 'https://i.imgur.com/w7ycEih.jpg'},
+{id: 'rainbowwhiptaillizard', name: 'Rainbow Whiptail Lizard', image: 'https://i.imgur.com/X3ZYR9Y.jpg'},
+{id: 'ratsnake', name: 'Rat Snake', image: 'https://i.imgur.com/c6AdvQt.jpg'},
+{id: 'redearedslider', name: 'Red-eared Slider', image: 'https://i.imgur.com/ldixazv.jpg'},
+{id: 'redeyedcrocodileskink', name: 'Red-eyed Crocodile Skink', image: 'https://i.imgur.com/xlM2HNY.jpg'},
+{id: 'redfootedtortoise', name: 'Red-footed Tortoise', image: 'https://i.imgur.com/iOx8slK.jpg'},
+{id: 'redbelliedswampsnake', name: 'Red Bellied Swamp Snake', image: 'https://i.imgur.com/af1JTAf.jpg'},
+{id: 'redeft', name: 'Red Eft', image: 'https://i.imgur.com/3nrKvk5.jpg'},
+{id: 'redeyedtreefrog', name: 'Red Eyed Tree Frog', image: 'https://i.imgur.com/H8XKebS.jpg'},
+{id: 'redgardenskink', name: 'Red Garden Skink', image: 'https://i.imgur.com/humAuEe.jpg'},
+{id: 'redsidedskink', name: 'Red Sided Skink', image: 'https://i.imgur.com/zceqQPz.jpg'},
+{id: 'redtailboa', name: 'Redtail Boa', image: 'https://i.imgur.com/hojrkuW.jpg'},
+{id: 'redtegu', name: 'Red Tegu', image: 'https://i.imgur.com/u5DuQmt.jpg'},
+{id: 'redvinesnake', name: 'Red Vine Snake', image: 'https://i.imgur.com/JN9xSau.jpg'},
+{id: 'reticulatedpython', name: 'Reticulated Python', image: 'https://i.imgur.com/kvoyzHZ.jpg'},
+{id: 'rhinocerosiguana', name: 'Rhinoceros Iguana', image: 'https://i.imgur.com/30vpCRB.jpg'},
+{id: 'rhinoviper', name: 'Rhino Viper', image: 'https://i.imgur.com/t74NvYK.jpg'},
+{id: 'ribbonsnake', name: 'Ribbon Snake', image: 'https://i.imgur.com/T0E5ZI1.jpg'},
+{id: 'ringnecksnake', name: 'Ringneck Snake', image: 'https://i.imgur.com/BNU53Ma.jpg'},
+{id: 'rosyboa', name: 'Rosy Boa', image: 'https://i.imgur.com/Oq8PScK.jpg'},
+{id: 'roughneckedmonitor', name: 'Rough-necked Monitor', image: 'https://i.imgur.com/MQW5rOc.jpg'},
+{id: 'roughgreensnake', name: 'Rough Green Snake', image: 'https://i.imgur.com/lhGKWxR.jpg'},
+{id: 'rubberboa', name: 'Rubber Boa', image: 'https://i.imgur.com/UysI5PY.jpg'},
+{id: 'russiantortoise', name: 'Russian Tortoise', image: 'https://i.imgur.com/nIefEcf.jpg'},
+{id: 'saltwatercrocodile', name: 'Saltwater Crocodile', image: 'https://i.imgur.com/mTgoGT6.jpg'},
+{id: 'sandfishskink', name: 'Sandfish Skink', image: 'https://i.imgur.com/iC64azA.jpg'},
+{id: 'satanicleaftailgecko', name: 'Satanic Leaftail Gecko', image: 'https://i.imgur.com/tZjkouH.jpg'},
+{id: 'savannahmonitor', name: 'Savannah Monitor', image: 'https://i.imgur.com/iGm3DfX.jpg'},
+{id: 'sawscaledviper', name: 'Saw-scaled Viper', image: 'https://i.imgur.com/eRr0v0l.jpg'},
+{id: 'scarletkingsnake', name: 'Scarlet King Snake', image: 'https://i.imgur.com/3BLJbrn.jpg'},
+{id: 'seakrait', name: 'Sea Krait', image: 'https://i.imgur.com/3zsc28z.jpg'},
+{id: 'serasinorumgecko', name: 'Serasinorum Gecko', image: 'https://i.imgur.com/JyWGa6G.jpg'},
+{id: 'sheltopusik', name: 'Sheltopusik', image: 'https://i.imgur.com/WnMGwMR.jpg'},
+{id: 'sidewinder', name: 'Sidewinder', image: 'https://i.imgur.com/CYddudd.jpg'},
+{id: 'similismonitor', name: 'Similis Monitor', image: 'https://i.imgur.com/MjxoMjB.jpg'},
+{id: 'siren', name: 'Siren', image: 'https://i.imgur.com/OBVihSK.jpg'},
+{id: 'slimysalamander', name: 'Slimy Salamander', image: 'https://i.imgur.com/3GV3v1G.jpg'},
+{id: 'smoothfrontcaiman', name: 'Smooth Front Caiman', image: 'https://i.imgur.com/eD42Whw.jpg'},
+{id: 'smoothgreensnake', name: 'Smooth Green Snake', image: 'https://i.imgur.com/MKZjpO0.jpg'},
+{id: 'smoothsnake', name: 'Smooth Snake', image: 'https://i.imgur.com/znuLz7z.jpg'},
+{id: 'softshellturtle', name: 'Softshell Turtle', image: 'https://i.imgur.com/TcZ1Rqt.jpg'},
+{id: 'solomonislandskink', name: 'Solomon Island Skink', image: 'https://i.imgur.com/qsfQn0g.jpg'},
+{id: 'spadefoottoad', name: 'Spadefoot Toad', image: 'https://i.imgur.com/JSCy9C7.jpg'},
+{id: 'spinylizard', name: 'Spiny Lizard', image: 'https://i.imgur.com/dirjB54.jpg'},
+{id: 'spinywaterskink', name: 'Spiny Water Skink', image: 'https://i.imgur.com/3UoaaR3.jpg'},
+{id: 'spottedpython', name: 'Spotted Python', image: 'https://i.imgur.com/tyMUSTB.jpg'},
+{id: 'spottedsalamander', name: 'Spotted Salamander', image: 'https://i.imgur.com/P9FSnzu.jpg'},
+{id: 'springpeeper', name: 'Spring Peeper', image: 'https://i.imgur.com/Oknxoqi.jpg'},
+{id: 'sulcatatortoise', name: 'Sulcata Tortoise', image: 'https://i.imgur.com/icf1UY2.jpg'},
+{id: 'sunbeamsnake', name: 'Sunbeam Snake', image: 'https://i.imgur.com/U37e4gm.jpg'},
+{id: 'sunskink', name: 'Sun Skink', image: 'https://i.imgur.com/YelKRHO.jpg'},
+{id: 'taipan', name: 'Taipan', image: 'https://i.imgur.com/CCjFrXy.jpg'},
+{id: 'thornydevil', name: 'Thorny Devil', image: 'https://i.imgur.com/u9ph0kS.jpg'},
+{id: 'tigersalamander', name: 'Tiger Salamander', image: 'https://i.imgur.com/tcCwtCw.jpg'},
+{id: 'timberrattlesnake', name: 'Timber Rattlesnake', image: 'https://i.imgur.com/ApHXOC1.jpg'},
+{id: 'timormonitor', name: 'Timor Monitor', image: 'https://i.imgur.com/g5lSkn0.jpg'},
+{id: 'tokaygecko', name: 'Tokay Gecko', image: 'https://i.imgur.com/ZRyL9Ym.jpg'},
+{id: 'tomatofrog', name: 'Tomato Frog', image: 'https://i.imgur.com/olgJqKk.jpg'},
+{id: 'tuatara', name: 'Tuatara', image: 'https://i.imgur.com/iZavp03.jpg'},
+{id: 'twolinesalamander', name: 'Two Line Salamander', image: 'https://i.imgur.com/mhKUSrX.jpg'},
+{id: 'uromastyx', name: 'Uromastyx', image: 'https://i.imgur.com/ipLYoML.jpg'},
+{id: 'veiledchameleon', name: 'Veiled Chameleon', image: 'https://i.imgur.com/rVdM8yE.jpg'},
+{id: 'velvetswampsnake', name: 'Velvet Swamp Snake', image: 'https://i.imgur.com/jg8YgSs.jpg'},
+{id: 'viperboa', name: 'Viper Boa', image: 'https://i.imgur.com/DgezjOz.jpg'},
+{id: 'vipergecko', name: 'Viper Gecko', image: 'https://i.imgur.com/4pyohT6.jpg'},
+{id: 'wedgesnoutedskink', name: 'Wedge-snouted Skink', image: 'https://i.imgur.com/Tyhl6Dl.jpg'},
+{id: 'whitelippedpython', name: 'White-lipped Python', image: 'https://i.imgur.com/fiSyo6W.jpg'},
+{id: 'whitethroatedmonitor', name: 'White-throated Monitor', image: 'https://i.imgur.com/J9VKCTQ.jpg'},
+{id: 'wolfsnake', name: 'Wolf Snake', image: 'https://i.imgur.com/QBiOACF.jpg'},
+{id: 'womapython', name: 'Woma Python', image: 'https://i.imgur.com/fvbhP73.jpg'},
+{id: 'woodhousestoad', name: 'Woodhouse’s Toad', image: 'https://i.imgur.com/ihDi68E.jpg'},
+{id: 'yellowanaconda', name: 'Yellow Anaconda', image: 'https://i.imgur.com/BuxTP38.jpg'},
+{id: 'yellowbellyslider', name: 'Yellow Belly Slider', image: 'https://i.imgur.com/Ciyl5cm.jpg'}
 ];
 
 var myPicker = new picker.Picker({
